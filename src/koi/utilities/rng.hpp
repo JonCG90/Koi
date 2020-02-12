@@ -9,6 +9,8 @@
 #ifndef KOI_RNG_HPP
 #define KOI_RNG_HPP
 
+#include <koi/math/defs.hpp>
+
 #include <random>
 
 namespace Koi
@@ -25,8 +27,8 @@ public:
     void reset();
 
     double sample1D() const;
-    void sample2D( std::array< double, 2 > &o_samples ) const;
-    void sample3D( std::array< double, 3 > &o_samples ) const;
+    void sample2D( Array2d &o_samples ) const;
+    void sample3D( Array2d &o_samples ) const;
     
 private:
     

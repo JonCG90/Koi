@@ -38,13 +38,13 @@ double RNG::sample1D() const
     return m_distribution( m_generator );
 }
 
-void RNG::sample2D( std::array< double, 2 > &o_samples ) const
+void RNG::sample2D( Array2d &o_samples ) const
 {
     o_samples[ 0 ] = m_distribution( m_generator );
     o_samples[ 1 ] = m_distribution( m_generator );
 }
 
-void RNG::sample3D( std::array< double, 3 > &o_samples ) const
+void RNG::sample3D( Array2d &o_samples ) const
 {
     o_samples[ 0 ] = m_distribution( m_generator );
     o_samples[ 1 ] = m_distribution( m_generator );
