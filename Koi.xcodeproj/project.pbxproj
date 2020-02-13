@@ -279,14 +279,26 @@
 		2363D3EC23E81C7700C85571 /* camera.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2363D3EA23E81C7700C85571 /* camera.hpp */; };
 		2363D3EF23E81D9D00C85571 /* raytrace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2363D3ED23E81D9D00C85571 /* raytrace.cpp */; };
 		2363D3F023E81D9D00C85571 /* raytrace.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2363D3EE23E81D9D00C85571 /* raytrace.hpp */; };
-		23DC7FB223CC618500343E5C /* Koi.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 23DC7FAF23CC618500343E5C /* Koi.hpp */; };
-		23DC7FB323CC618500343E5C /* Koi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 23DC7FB023CC618500343E5C /* Koi.cpp */; };
-		23DC7FB423CC618500343E5C /* KoiPriv.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 23DC7FB123CC618500343E5C /* KoiPriv.hpp */; };
+		239C854E23F408790079116E /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 239C854D23F408790079116E /* main.cpp */; };
+		239C855423F52DDC0079116E /* koi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 239C855223F52DDC0079116E /* koi.cpp */; };
+		239C855523F52DDC0079116E /* koi.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 239C855323F52DDC0079116E /* koi.hpp */; };
 		23DC7FC023CDCE5500343E5C /* timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 23DC7FBE23CDCE5500343E5C /* timer.cpp */; };
 		23DC7FC123CDCE5500343E5C /* timer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 23DC7FBF23CDCE5500343E5C /* timer.hpp */; };
 		23DC7FC423D06DEF00343E5C /* rng.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 23DC7FC223D06DEF00343E5C /* rng.cpp */; };
 		23DC7FC523D06DEF00343E5C /* rng.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 23DC7FC323D06DEF00343E5C /* rng.hpp */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		239C854923F408790079116E /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		2363D13723E0273800C85571 /* vec4.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = vec4.hpp; sourceTree = "<group>"; };
@@ -697,10 +709,11 @@
 		2363D3EA23E81C7700C85571 /* camera.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = camera.hpp; sourceTree = "<group>"; };
 		2363D3ED23E81D9D00C85571 /* raytrace.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = raytrace.cpp; sourceTree = "<group>"; };
 		2363D3EE23E81D9D00C85571 /* raytrace.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = raytrace.hpp; sourceTree = "<group>"; };
+		239C854B23F408790079116E /* KoiExe */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = KoiExe; sourceTree = BUILT_PRODUCTS_DIR; };
+		239C854D23F408790079116E /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		239C855223F52DDC0079116E /* koi.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = koi.cpp; sourceTree = "<group>"; };
+		239C855323F52DDC0079116E /* koi.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = koi.hpp; sourceTree = "<group>"; };
 		23DC7F9223CC5A5C00343E5C /* libKoi.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libKoi.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		23DC7FAF23CC618500343E5C /* Koi.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Koi.hpp; sourceTree = "<group>"; };
-		23DC7FB023CC618500343E5C /* Koi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Koi.cpp; sourceTree = "<group>"; };
-		23DC7FB123CC618500343E5C /* KoiPriv.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = KoiPriv.hpp; sourceTree = "<group>"; };
 		23DC7FBE23CDCE5500343E5C /* timer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = timer.cpp; sourceTree = "<group>"; };
 		23DC7FBF23CDCE5500343E5C /* timer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = timer.hpp; sourceTree = "<group>"; };
 		23DC7FC223D06DEF00343E5C /* rng.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = rng.cpp; sourceTree = "<group>"; };
@@ -708,6 +721,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		239C854823F408790079116E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		23DC7F9023CC5A5C00343E5C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -1185,11 +1205,20 @@
 			path = camera;
 			sourceTree = "<group>";
 		};
+		239C854C23F408790079116E /* KoiExe */ = {
+			isa = PBXGroup;
+			children = (
+				239C854D23F408790079116E /* main.cpp */,
+			);
+			path = KoiExe;
+			sourceTree = "<group>";
+		};
 		23DC7F8923CC5A5C00343E5C = {
 			isa = PBXGroup;
 			children = (
 				23DC7FAE23CC618500343E5C /* koi */,
 				2363D13523E0273800C85571 /* thirdparty */,
+				239C854C23F408790079116E /* KoiExe */,
 				23DC7F9323CC5A5C00343E5C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -1198,6 +1227,7 @@
 			isa = PBXGroup;
 			children = (
 				23DC7F9223CC5A5C00343E5C /* libKoi.dylib */,
+				239C854B23F408790079116E /* KoiExe */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1205,9 +1235,8 @@
 		23DC7FAE23CC618500343E5C /* koi */ = {
 			isa = PBXGroup;
 			children = (
-				23DC7FB023CC618500343E5C /* Koi.cpp */,
-				23DC7FAF23CC618500343E5C /* Koi.hpp */,
-				23DC7FB123CC618500343E5C /* KoiPriv.hpp */,
+				239C855223F52DDC0079116E /* koi.cpp */,
+				239C855323F52DDC0079116E /* koi.hpp */,
 				23DC7FB923CC63E000343E5C /* bxdf */,
 				2363D3E823E81C6400C85571 /* camera */,
 				23DC7FBC23CC63E000343E5C /* concurrency */,
@@ -1392,11 +1421,11 @@
 				2363D2CB23E0273900C85571 /* quaternion_double_precision.hpp in Headers */,
 				2363D2CC23E0273900C85571 /* matrix_float4x2.hpp in Headers */,
 				2363D39923E0273900C85571 /* fast_exponential.hpp in Headers */,
+				239C855523F52DDC0079116E /* koi.hpp in Headers */,
 				2363D37B23E0273900C85571 /* closest_point.hpp in Headers */,
 				2363D2B923E0273900C85571 /* integer.hpp in Headers */,
 				2363D30C23E0273900C85571 /* vector_int3.hpp in Headers */,
 				2363D38423E0273900C85571 /* number_precision.hpp in Headers */,
-				23DC7FB223CC618500343E5C /* Koi.hpp in Headers */,
 				2363D34323E0273900C85571 /* type_quat.hpp in Headers */,
 				2363D32123E0273900C85571 /* matrix_double4x3_precision.hpp in Headers */,
 				2363D33323E0273900C85571 /* trigonometric.h in Headers */,
@@ -1409,7 +1438,6 @@
 				2363D3F023E81D9D00C85571 /* raytrace.hpp in Headers */,
 				2363D32723E0273900C85571 /* matrix_double3x2.hpp in Headers */,
 				2363D2F523E0273900C85571 /* matrix_float3x3_precision.hpp in Headers */,
-				23DC7FB423CC618500343E5C /* KoiPriv.hpp in Headers */,
 				2363D2FB23E0273900C85571 /* vector_float3.hpp in Headers */,
 				2363D39123E0273900C85571 /* scalar_relational.hpp in Headers */,
 				2363D2E523E0273900C85571 /* quaternion_float_precision.hpp in Headers */,
@@ -1577,6 +1605,23 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		239C854A23F408790079116E /* KoiExe */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 239C855123F408790079116E /* Build configuration list for PBXNativeTarget "KoiExe" */;
+			buildPhases = (
+				239C854723F408790079116E /* Sources */,
+				239C854823F408790079116E /* Frameworks */,
+				239C854923F408790079116E /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KoiExe;
+			productName = KoiExe;
+			productReference = 239C854B23F408790079116E /* KoiExe */;
+			productType = "com.apple.product-type.tool";
+		};
 		23DC7F9123CC5A5C00343E5C /* Koi */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 23DC7F9D23CC5A5C00343E5C /* Build configuration list for PBXNativeTarget "Koi" */;
@@ -1603,6 +1648,9 @@
 				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = "Jonathan Graham";
 				TargetAttributes = {
+					239C854A23F408790079116E = {
+						CreatedOnToolsVersion = 11.3;
+					};
 					23DC7F9123CC5A5C00343E5C = {
 						CreatedOnToolsVersion = 11.3;
 					};
@@ -1622,11 +1670,20 @@
 			projectRoot = "";
 			targets = (
 				23DC7F9123CC5A5C00343E5C /* Koi */,
+				239C854A23F408790079116E /* KoiExe */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
+		239C854723F408790079116E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				239C854E23F408790079116E /* main.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		23DC7F8F23CC5A5C00343E5C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1634,6 +1691,7 @@
 				2363D3B723E02A8C00C85571 /* sphere.cpp in Sources */,
 				2363D3B323E029E500C85571 /* shape.cpp in Sources */,
 				2363D3D523E2D32F00C85571 /* diffuse.cpp in Sources */,
+				239C855423F52DDC0079116E /* koi.cpp in Sources */,
 				2363D3BF23E2CE2900C85571 /* math.cpp in Sources */,
 				2363D3EB23E81C7700C85571 /* camera.cpp in Sources */,
 				2363D34923E0273900C85571 /* glm.cpp in Sources */,
@@ -1646,7 +1704,6 @@
 				2363D3C923E2D1DB00C85571 /* ray.cpp in Sources */,
 				2363D3EF23E81D9D00C85571 /* raytrace.cpp in Sources */,
 				2363D3D123E2D2D500C85571 /* bxdf.cpp in Sources */,
-				23DC7FB323CC618500343E5C /* Koi.cpp in Sources */,
 				23DC7FC023CDCE5500343E5C /* timer.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1654,6 +1711,28 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		239C854F23F408790079116E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CODE_SIGN_STYLE = Automatic;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				OTHER_LDFLAGS = "-lKoi";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		239C855023F408790079116E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CODE_SIGN_STYLE = Automatic;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				OTHER_LDFLAGS = "-lKoi";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		23DC7F9B23CC5A5C00343E5C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1804,6 +1883,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		239C855123F408790079116E /* Build configuration list for PBXNativeTarget "KoiExe" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				239C854F23F408790079116E /* Debug */,
+				239C855023F408790079116E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		23DC7F8D23CC5A5C00343E5C /* Build configuration list for PBXProject "Koi" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
