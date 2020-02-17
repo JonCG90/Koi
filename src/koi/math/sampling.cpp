@@ -10,7 +10,7 @@
 
 #include <koi/math/defs.hpp>
 
-namespace Koi
+namespace koi
 {
 
 void uniformSampleHemisphere( const Array2d &i_u, Vec3d &o_sample )
@@ -76,4 +76,4 @@ void concentricSampleDisk( const Array2d &i_u, Vec2d &o_sample )
     o_sample = r * Vec2d( std::cos( theta ), std::sin( theta ) );
 }
 
-} // namespace Koi
+} // namespace koi

@@ -11,7 +11,7 @@
 
 #include "defs.hpp"
 
-namespace Koi
+namespace koi
 {
 
 static float MaxFloat = std::numeric_limits< float >::max();
@@ -69,7 +69,7 @@ static U integrate( const std::vector< T > &i_samples,
                     T i_intervalEnd,
                     IntegrationMode i_mode = IntegrationMode::Clamp );
 
-} // namespace Koi
+} // namespace koi
 
 #include "math.tpp"
 

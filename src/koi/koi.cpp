@@ -9,7 +9,7 @@
 #include "koi.hpp"
 #include <koi/core/spectrum.hpp>
 
-namespace Koi
+namespace koi
 {
 
 void render()
@@ -18,4 +18,4 @@ void render()
     s.toXYZ();
 }
 
-} // namespace Koi
+} // namespace koi

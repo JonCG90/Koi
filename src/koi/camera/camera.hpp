@@ -13,7 +13,7 @@
 
 #include <iostream>
 
-namespace Koi
+namespace koi
 {
 
 // Forward Declarations
@@ -38,6 +38,6 @@ public:
     virtual double generateRay( const CameraSample &i_sample, Ray &o_ray ) = 0;
 };
 
-} // namespace Koi
+} // namespace koi
 
 #endif /* camera_hpp */

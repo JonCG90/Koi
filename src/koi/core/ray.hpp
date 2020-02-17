@@ -11,7 +11,7 @@
 
 #include <koi/math/defs.hpp>
 
-namespace Koi
+namespace koi
 {
 
 class Ray
@@ -32,6 +32,6 @@ private:
     Vec3d m_direction;
 };
 
-} // namespace Koi
+} // namespace koi
 
 #endif /* KOI_RAY_HPP */

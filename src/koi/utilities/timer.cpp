@@ -8,7 +8,7 @@
 
 #include "timer.hpp"
 
-namespace Koi
+namespace koi
 {
 
 static const double kMicroToNano = 1000.0;
@@ -46,4 +46,4 @@ double Timer::elapsedSeconds()
     return elapsedNanoseconds() / kSecToNano;
 }
 
-}
+} // namespace koi

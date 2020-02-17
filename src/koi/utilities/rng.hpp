@@ -13,7 +13,7 @@
 
 #include <random>
 
-namespace Koi
+namespace koi
 {
 
 class RNG
@@ -37,6 +37,6 @@ private:
     mutable std::uniform_real_distribution< double > m_distribution;
 };
 
-}
+} // namespace koi
 
 #endif /* KOI_RNG_HPP */

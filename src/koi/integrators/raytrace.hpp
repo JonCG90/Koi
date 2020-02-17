@@ -11,7 +11,7 @@
 
 #include "integrator.hpp"
 
-namespace Koi
+namespace koi
 {
 
 class RayTraceIntegrator : public Integrator
@@ -27,7 +27,7 @@ private:
     
 };
 
-} // namespace Koi
+} // namespace koi
 
 
 #endif /* KOI_RAYTRACE_HPP */

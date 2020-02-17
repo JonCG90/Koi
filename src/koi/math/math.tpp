@@ -6,7 +6,7 @@
 //  Copyright © 2020 Jonathan Graham. All rights reserved.
 //
 
-namespace Koi
+namespace koi
 {
 
 template < class T >
@@ -177,4 +177,4 @@ static U integrate( const std::vector< T > &i_samples,
     return sum;
 }
 
-} // namespace Koi
+} // namespace koi

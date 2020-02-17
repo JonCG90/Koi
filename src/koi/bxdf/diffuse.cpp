@@ -11,7 +11,7 @@
 #include <koi/math/math.hpp>
 #include <koi/math/sampling.hpp>
 
-namespace Koi
+namespace koi
 {
 
 Diffuse::Diffuse()
@@ -35,4 +35,4 @@ Spectrum Diffuse::computeF( const Vec3d &i_wo, const Vec3d &i_wi )
     return m_albedo * M_1_PI;
 }
 
-} // namespace Koi
+} // namespace koi

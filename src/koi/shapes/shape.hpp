@@ -11,7 +11,7 @@
 
 #include <iostream>
 
-namespace Koi
+namespace koi
 {
 
 // Forward Declarations
@@ -32,6 +32,6 @@ public:
     
 };
 
-} // namespace Koi
+} // namespace koi
 
 #endif /* KOI_SHAPE_HPP */

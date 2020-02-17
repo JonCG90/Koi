@@ -10,7 +10,7 @@
 
 #include <koi/core/ray.hpp>
 
-namespace Koi
+namespace koi
 {
 
 void Scene::addShape( ShapePtr i_shape )
@@ -28,5 +28,5 @@ bool Scene::intersect( const Ray &i_ray, Intersection &o_intersection )
     return false;
 }
 
-} // namespace Koi
+} // namespace koi
 

@@ -10,7 +10,7 @@
 
 #include <koi/core/ray.hpp>
 
-namespace Koi
+namespace koi
 {
 
 Sphere::Sphere()
@@ -89,4 +89,4 @@ bool Sphere::intersect( const Ray &i_ray, Intersection &o_intersection ) const
     return hit;
 }
 
-} // namespace Koi
+} // namespace koi

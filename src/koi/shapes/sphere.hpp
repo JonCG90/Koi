@@ -14,7 +14,7 @@
 #include <koi/core/ray.hpp>
 #include <koi/math/defs.hpp>
 
-namespace Koi
+namespace koi
 {
 
 class Sphere : public Shape
@@ -33,6 +33,6 @@ private:
     double m_radius;
 };
 
-} // namespace Koi
+} // namespace koi
 
 #endif /* KOI_SPHERE_HPP */

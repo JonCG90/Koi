@@ -13,7 +13,7 @@
 
 #include <koi/core/spectrum.hpp>
 
-namespace Koi
+namespace koi
 {
 
 class Diffuse : public BxDF
@@ -36,6 +36,6 @@ private:
     Spectrum m_albedo;
 };
 
-} // namespace Koi
+} // namespace koi
 
 #endif /* KOI_DIFFUSE_HPP */

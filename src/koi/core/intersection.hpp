@@ -9,7 +9,7 @@
 #ifndef KOI_INTERSECTION_HPP
 #define KOI_INTERSECTION_HPP
 
-namespace Koi
+namespace koi
 {
 
 class Intersection
@@ -21,6 +21,6 @@ public:
 private:
 };
 
-} // namespace Koi
+} // namespace koi
 
 #endif /* KOI_INTERSECTION_HPP */

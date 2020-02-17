@@ -13,7 +13,7 @@
 
 #include <array>
 
-namespace Koi
+namespace koi
 {
 
 #define SPECTRUM_SAMPLE_COUNT 3
@@ -70,6 +70,6 @@ using SpectrumSamples = std::vector< SpectrumSample >;
 using Wavelength = double;
 using Wavelengths = std::vector< Wavelength >;
 
-} // namespace Koi
+} // namespace koi
 
 #endif /* spectrum_hpp */

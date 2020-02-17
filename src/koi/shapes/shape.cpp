@@ -8,8 +8,8 @@
 
 #include "shape.hpp"
 
-namespace Koi
+namespace koi
 {
 
-} // namespace Koi
+} // namespace koi
 

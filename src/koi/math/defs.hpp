@@ -19,7 +19,7 @@
 
 #include <array>
 
-namespace Koi
+namespace koi
 {
 
 using Vec2f = glm::fvec2;
@@ -62,6 +62,6 @@ using Mat4 = glm::tmat4x4< T, glm::precision::defaultp >;
 using Array2d = std::array< double, 2 >;
 using Array3d = std::array< double, 3 >;
 
-} // namespace Koi
+} // namespace koi
 
 #endif /* KOI_MATH_DEFS_HPP */

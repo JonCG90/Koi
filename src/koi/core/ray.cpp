@@ -8,7 +8,7 @@
 
 #include "ray.hpp"
 
-namespace Koi
+namespace koi
 {
 
 Ray::Ray()
@@ -32,4 +32,4 @@ const Vec3d & Ray::getDirection() const
     return m_direction;
 }
 
-} // namespace Koi
+} // namespace koi

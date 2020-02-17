@@ -11,11 +11,11 @@
 
 #include <iostream>
 
-namespace Koi
+namespace koi
 {
 
 void render();
 
-} // namespace Koi
+} // namespace koi
 
 #endif /* KOI_KOI_HPP */

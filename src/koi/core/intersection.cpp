@@ -8,7 +8,7 @@
 
 #include "intersection.hpp"
 
-namespace Koi
+namespace koi
 {
 
-} // namespace Koi
+} // namespace koi

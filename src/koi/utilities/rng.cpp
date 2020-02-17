@@ -11,7 +11,7 @@
 // C++
 #include <array>
 
-namespace Koi
+namespace koi
 {
 
 RNG::RNG()
@@ -51,4 +51,4 @@ void RNG::sample3D( Array2d &o_samples ) const
     o_samples[ 2 ] = m_distribution( m_generator );
 }
 
-}
+} // namespace koi

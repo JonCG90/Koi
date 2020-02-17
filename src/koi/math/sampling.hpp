@@ -11,7 +11,7 @@
 
 #include <koi/math/defs.hpp>
 
-namespace Koi
+namespace koi
 {
 
 void uniformSampleHemisphere( const Array2d &i_u, Vec3d &o_sample );
@@ -24,6 +24,6 @@ float cosineHemispherePdf( double cosTheta );
 
 void concentricSampleDisk( const Array2d &i_u, Vec2d &o_sample );
 
-} // namespace Koi
+} // namespace koi
 
 #endif /* KOI_SAMPLING_HPP */

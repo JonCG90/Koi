@@ -11,7 +11,7 @@
 
 #include <koi/math/defs.hpp>
 
-namespace Koi
+namespace koi
 {
 
 class Spectrum;
@@ -32,6 +32,6 @@ public:
 
 };
 
-} // namespace Koi
+} // namespace koi
 
 #endif /* KOI_BXDF_HPP */

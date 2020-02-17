@@ -11,7 +11,7 @@
 
 #include <chrono>
 
-namespace Koi
+namespace koi
 {
 
 class Timer
@@ -35,6 +35,6 @@ private:
     high_resolution_clock::time_point m_start;
 };
 
-}
+} // namespace koi
 
-#endif /* timer_hpp */
+#endif /* KOI_TIMER_HPP */

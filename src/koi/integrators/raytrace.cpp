@@ -12,7 +12,7 @@
 #include <koi/core/ray.hpp>
 #include <koi/core/spectrum.hpp>
 
-namespace Koi
+namespace koi
 {
 
 Spectrum RayTraceIntegrator::computeLi( const Vec2u &i_filmPoint, const Scene &i_scene, CameraPtr i_camera, const Sampler &i_sampler, size_t i_depth )
@@ -98,4 +98,4 @@ Spectrum RayTraceIntegrator::computeLi( const Vec2u &i_filmPoint, const Scene &i
     return weight * radiance;
 }
 
-} // namespace Koi
+} // namespace koi

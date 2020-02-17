@@ -12,7 +12,7 @@
 #include <koi/camera/camera.hpp>
 #include <koi/math/defs.hpp>
 
-namespace Koi
+namespace koi
 {
 
 // Forward Declarations
@@ -35,6 +35,6 @@ public:
                                 size_t i_depth ) = 0;
 };
 
-} // namespace Koi
+} // namespace koi
 
 #endif /* integrator_hpp */

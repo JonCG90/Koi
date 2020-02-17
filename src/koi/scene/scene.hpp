@@ -13,7 +13,7 @@
 
 #include <vector>
 
-namespace Koi
+namespace koi
 {
 
 // Forward Declarations
@@ -36,6 +36,6 @@ private:
     std::vector< ShapePtr > m_shapes;
 };
 
-} // namespace Koi
+} // namespace koi
 
-#endif /* scene_hpp */
+#endif /* KOI_SCENE_HPP */

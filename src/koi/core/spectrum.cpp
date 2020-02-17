@@ -15,7 +15,7 @@
 #include <iomanip>
 #include <vector>
 
-namespace Koi
+namespace koi
 {
 
 static const size_t CIESamplesCount = 471;
@@ -1072,4 +1072,4 @@ Spectrum sqrt( const Spectrum &i_spectrum )
     return ret;
 }
 
-} // namespace Koi
+} // namespace koi
