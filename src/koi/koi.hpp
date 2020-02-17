@@ -14,7 +14,7 @@
 namespace Koi
 {
 
-void KoiHello( const std::string &i_str );
+void render();
 
 } // namespace Koi
 

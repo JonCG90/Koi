@@ -8,14 +8,21 @@
 
 #include "spectrum.hpp"
 
+#include <koi/math/math.hpp>
+
 #include <cmath>
 #include <iostream>
+#include <iomanip>
+#include <vector>
 
 namespace Koi
 {
 
 static const size_t CIESamplesCount = 471;
-static const float CIEColorMatchingX[ CIESamplesCount ] = {
+static const Wavelength sampledWavelengthStart = 400.0;
+static const Wavelength sampledWavelengthEnd = 700.0;
+
+static const std::vector< float > CIEColorMatchingX {
     // CIE X function values
     0.0001299000f,   0.0001458470f,   0.0001638021f,   0.0001840037f,
     0.0002066902f,   0.0002321000f,   0.0002607280f,   0.0002930750f,
@@ -136,7 +143,7 @@ static const float CIEColorMatchingX[ CIESamplesCount ] = {
     0.000001905497f, 0.000001776509f, 0.000001656215f, 0.000001544022f,
     0.000001439440f, 0.000001341977f, 0.000001251141f};
 
-static const float CIEColorMatchingY[ CIESamplesCount ] = {
+static const std::vector< float > CIEColorMatchingY {
     // CIE Y function values
     0.000003917000f,  0.000004393581f,  0.000004929604f,  0.000005532136f,
     0.000006208245f,  0.000006965000f,  0.000007813219f,  0.000008767336f,
@@ -257,7 +264,7 @@ static const float CIEColorMatchingY[ CIESamplesCount ] = {
     0.0000006881098f, 0.0000006415300f, 0.0000005980895f, 0.0000005575746f,
     0.0000005198080f, 0.0000004846123f, 0.0000004518100f};
 
-static const float CIEColorMatchingZ[ CIESamplesCount ] = {
+static const std::vector< float > CIEColorMatchingZ {
     // CIE Z function values
     0.0006061000f,
     0.0006808792f,
@@ -731,7 +738,7 @@ static const float CIEColorMatchingZ[ CIESamplesCount ] = {
     0.0f,
     0.0f};
 
-static const float CIEColorMatchingLambda[ CIESamplesCount ] = {
+static const std::vector< double > CIEColorMatchingLambda {
     360, 361, 362, 363, 364, 365, 366, 367, 368, 369, 370, 371, 372, 373, 374,
     375, 376, 377, 378, 379, 380, 381, 382, 383, 384, 385, 386, 387, 388, 389,
     390, 391, 392, 393, 394, 395, 396, 397, 398, 399, 400, 401, 402, 403, 404,
@@ -763,7 +770,21 @@ static const float CIEColorMatchingLambda[ CIESamplesCount ] = {
     780, 781, 782, 783, 784, 785, 786, 787, 788, 789, 790, 791, 792, 793, 794,
     795, 796, 797, 798, 799, 800, 801, 802, 803, 804, 805, 806, 807, 808, 809,
     810, 811, 812, 813, 814, 815, 816, 817, 818, 819, 820, 821, 822, 823, 824,
-    825, 826, 827, 828, 829, 830};
+    825, 826, 827, 828, 829, 830
+};
+
+static double averageSpectrumSamples( const Wavelengths &i_wavelengths,
+                                      const std::vector< float > &i_values,
+                                      Wavelength i_wavelengthStart,
+                                      Wavelength i_wavelengthEnd )
+{
+    const double sum = integrate( i_wavelengths,
+                                  i_values,
+                                  i_wavelengthStart,
+                                  i_wavelengthEnd,
+                                  IntegrationMode::Constant );
+    return sum / ( i_wavelengthEnd - i_wavelengthStart );
+}
 
 Spectrum::Spectrum()
     : Spectrum( 0.0 )
@@ -777,9 +798,22 @@ Spectrum::Spectrum( double i_value )
 
 Vec3d Spectrum::toXYZ() const
 {
-    for ( size_t i = 0; i < CIESamplesCount; i++ )
+    Spectrum X;
+    Spectrum Y;
+    Spectrum Z;
+
+    for ( size_t i = 0; i < SPECTRUM_SAMPLE_COUNT; ++i )
     {
-        std::cout << CIEColorMatchingLambda[i] << ", " << CIEColorMatchingX[i] << ", " << CIEColorMatchingX[i] << ", " << CIEColorMatchingZ[i] << ", " << std::endl;
+        Wavelength segmentStart = lerp( static_cast< Wavelength >( static_cast< float >( i ) / SPECTRUM_SAMPLE_COUNT ), sampledWavelengthStart, sampledWavelengthEnd );
+        Wavelength segmentEnd = lerp( static_cast< Wavelength >( static_cast< float >( i + 1 ) / SPECTRUM_SAMPLE_COUNT ), sampledWavelengthStart, sampledWavelengthEnd );
+
+        const float x = averageSpectrumSamples( CIEColorMatchingLambda, CIEColorMatchingX, segmentStart, segmentEnd );
+        const float y = averageSpectrumSamples( CIEColorMatchingLambda, CIEColorMatchingY, segmentStart, segmentEnd );
+        const float z = averageSpectrumSamples( CIEColorMatchingLambda, CIEColorMatchingZ, segmentStart, segmentEnd );
+
+        X.m_wavelengths[ i ] = x;
+        Y.m_wavelengths[ i ] = y;
+        Z.m_wavelengths[ i ] = z;
     }
     
     return Vec3d();

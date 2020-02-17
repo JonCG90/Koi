@@ -12,6 +12,6 @@
 
 int main(int argc, const char * argv[]) {
     
-    Koi::KoiHello( "HELLO!" );
+    Koi::render();
     return 0;
 }

@@ -7,13 +7,15 @@
 //
 
 #include "koi.hpp"
+#include <koi/core/spectrum.hpp>
 
 namespace Koi
 {
 
-void KoiHello( const std::string &i_str )
+void render()
 {
-    std::cout << i_str << std::endl;
+    Spectrum s;
+    s.toXYZ();
 }
 
 } // namespace Koi

@@ -25,7 +25,7 @@ Spectrum Diffuse::sampleF( const Array2d &i_sample,
                            float &o_pdf )
 {
     cosineSampleHemisphere( i_sample, o_wi );
-    o_pdf = cosineHemispherePdf( CosTheta( o_wi ) );
+    o_pdf = cosineHemispherePdf( cosTheta( o_wi ) );
     
     return computeF( i_wo, o_wi );
 }

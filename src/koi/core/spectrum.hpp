@@ -67,6 +67,9 @@ struct SpectrumSample
 
 using SpectrumSamples = std::vector< SpectrumSample >;
 
+using Wavelength = double;
+using Wavelengths = std::vector< Wavelength >;
+
 } // namespace Koi
 
 #endif /* spectrum_hpp */

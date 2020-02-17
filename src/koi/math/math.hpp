@@ -17,44 +17,57 @@ namespace Koi
 static float MaxFloat = std::numeric_limits< float >::max();
 static double Infinity = std::numeric_limits< double >::infinity();
 
-template < class T >
-inline T Lerp( const T &t, const T &v1, const T &v2 );
+enum class IntegrationMode
+{
+    Clamp,
+    Constant,
+};
 
 template < class T >
-inline T CosTheta( const Vec3< T > &i_w );
+inline T lerp( const T &i_t, const T &i_v1, const T &i_v2 );
 
 template < class T >
-inline T Cos2Theta( const Vec3< T > &i_w );
+inline T cosTheta( const Vec3< T > &i_w );
 
 template < class T >
-inline T AbsCosTheta( const Vec3< T > &i_w );
+inline T cos2Theta( const Vec3< T > &i_w );
 
 template < class T >
-inline T Sin2Theta( const Vec3< T > &i_w );
+inline T absCosTheta( const Vec3< T > &i_w );
 
 template < class T >
-inline T SinTheta( const Vec3< T > &i_w );
+inline T sin2Theta( const Vec3< T > &i_w );
 
 template < class T >
-inline T TanTheta( const Vec3< T > &i_w );
+inline T sinTheta( const Vec3< T > &i_w );
 
 template < class T >
-inline T Tan2Theta( const Vec3< T > &i_w );
+inline T tanTheta( const Vec3< T > &i_w );
 
 template < class T >
-inline T CosPhi( const Vec3< T > &i_w );
+inline T tan2Theta( const Vec3< T > &i_w );
 
 template < class T >
-inline T SinPhi( const Vec3< T > &i_w );
+inline T CcosPhi( const Vec3< T > &i_w );
 
 template < class T >
-inline T Cos2Phi( const Vec3< T > &i_w );
+inline T sinPhi( const Vec3< T > &i_w );
 
 template < class T >
-inline T Sin2Phi( const Vec3< T > &i_w );
+inline T cos2Phi( const Vec3< T > &i_w );
 
 template < class T >
-inline T SameHemisphere( const Vec3< T > &i_w1,  const Vec3< T > &i_w2 );
+inline T sin2Phi( const Vec3< T > &i_w );
+
+template < class T >
+inline T sameHemisphere( const Vec3< T > &i_w1,  const Vec3< T > &i_w2 );
+
+template < class T, class U >
+static U integrate( const std::vector< T > &i_samples,
+                    const std::vector< U > &i_values,
+                    T i_intervalStart,
+                    T i_intervalEnd,
+                    IntegrationMode i_mode = IntegrationMode::Clamp );
 
 } // namespace Koi
 
