@@ -16,7 +16,10 @@
 namespace koi
 {
 
-#define SPECTRUM_SAMPLE_COUNT 3
+#define SPECTRUM_SAMPLE_COUNT 60
+
+using Wavelength = double;
+using Wavelengths = std::vector< Wavelength >;
 
 class Spectrum
 {
@@ -27,10 +30,9 @@ public:
     
     ~Spectrum() = default;
     
-    Vec3d toXYZ() const;
-    Vec3d toRGB() const;
-    
     Spectrum & operator=( const Spectrum &i_spectrum );
+    bool operator==( const Spectrum &i_spectrum ) const;
+    bool operator!=( const Spectrum &i_spectrum ) const;
     Spectrum operator+( const Spectrum &i_spectrum ) const;
     Spectrum & operator+=( const Spectrum &i_spectrum );
     Spectrum operator+( float i_constant ) const;
@@ -51,12 +53,18 @@ public:
     Spectrum operator/( float i_constant ) const;
     friend Spectrum operator/( float i_lhs, const Spectrum &i_rhs );
     Spectrum & operator/=( float i_constant );
+    Wavelength & operator[]( size_t i_index );
+    Wavelength operator[]( size_t i_index ) const;
     
     friend Spectrum sqrt( const Spectrum &i_spectrum );
     
+    Vec3d toXYZ() const;
+    Vec3d toRGB() const;
+    
 private:
         
-    std::array< double, SPECTRUM_SAMPLE_COUNT > m_wavelengths;
+    std::array< Wavelength, SPECTRUM_SAMPLE_COUNT > m_wavelengths;
+
 };
 
 struct SpectrumSample
@@ -66,9 +74,6 @@ struct SpectrumSample
 };
 
 using SpectrumSamples = std::vector< SpectrumSample >;
-
-using Wavelength = double;
-using Wavelengths = std::vector< Wavelength >;
 
 } // namespace koi
 

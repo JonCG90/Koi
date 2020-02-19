@@ -16,6 +16,7 @@ void render()
 {
     Spectrum s;
     s.toXYZ();
+
 }
 
 } // namespace koi
