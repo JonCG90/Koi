@@ -16,77 +16,77 @@ inline T lerp( const T &i_t, const T &i_v1, const T &i_v2 )
 }
 
 template < class T >
-inline T cosTheta( const Vec3< T > &i_w )
+inline T cosTheta( const Vec3T< T > &i_w )
 {
     return i_w.y;
 }
 
 template < class T >
-inline T cos2Theta( const Vec3< T > &i_w )
+inline T cos2Theta( const Vec3T< T > &i_w )
 {
     return i_w.y * i_w.y;
 }
 
 template < class T >
-inline T absCosTheta( const Vec3< T > &i_w )
+inline T absCosTheta( const Vec3T< T > &i_w )
 {
     return std::abs( CosTheta( i_w ) );
 }
 
 template < class T >
-inline T sin2Theta( const Vec3< T > &i_w )
+inline T sin2Theta( const Vec3T< T > &i_w )
 {
     return std::max( 1 - Cos2Theta( i_w ), 0 );
 }
 
 template < class T >
-inline T sinTheta( const Vec3< T > &i_w )
+inline T sinTheta( const Vec3T< T > &i_w )
 {
     return std::sqrt( Sin2Theta( i_w ) );
 }
 
 template < class T >
-inline T tanTheta( const Vec3< T > &i_w )
+inline T tanTheta( const Vec3T< T > &i_w )
 {
     return SinTheta( i_w ) / CosTheta( i_w );
 }
 
 template < class T >
-inline T tan2Theta( const Vec3< T > &i_w )
+inline T tan2Theta( const Vec3T< T > &i_w )
 {
     return Sin2Theta( i_w ) / Cos2Theta( i_w );
 }
 
 template < class T >
-inline T cosPhi( const Vec3< T > &i_w )
+inline T cosPhi( const Vec3T< T > &i_w )
 {
     T sinTheta = SinTheta( i_w );
     return ( sinTheta == 0 ) ? 1 : std::clamp( i_w.x / sinTheta, -1, 1 );
 }
 
 template < class T >
-inline T sinPhi( const Vec3< T > &i_w )
+inline T sinPhi( const Vec3T< T > &i_w )
 {
     T sinTheta = SinTheta( i_w );
     return ( sinTheta == 0 ) ? 1 : std::clamp( i_w.z / sinTheta, -1, 1 );
 }
 
 template < class T >
-inline T cos2Phi( const Vec3< T > &i_w )
+inline T cos2Phi( const Vec3T< T > &i_w )
 {
     T cosPhi = CosPhi( i_w );
     return cosPhi * cosPhi;
 }
 
 template < class T >
-inline T sin2Phi( const Vec3< T > &i_w )
+inline T sin2Phi( const Vec3T< T > &i_w )
 {
     T sinPhi = SinPhi( i_w );
     return sinPhi * sinPhi;
 }
 
 template < class T >
-inline T sameHemisphere( const Vec3< T > &i_w1,  const Vec3< T > &i_w2 )
+inline T sameHemisphere( const Vec3T< T > &i_w1,  const Vec3T< T > &i_w2 )
 {
     return i_w1.y * i_w2.y > 0;
 }

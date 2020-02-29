@@ -20,10 +20,10 @@ namespace koi
 
 static const Wavelength s_SampledWavelengthStart = 400.0;
 static const Wavelength s_SampledWavelengthEnd = 700.0;
-static const double s_CIEColorMatchingYIntegral = 106.856895;
+static const float s_CIEColorMatchingYIntegral = 106.856895;
 static const size_t s_NumCIESamples = 471;
 
-static const double s_CIEColorMatchingXSamples[ s_NumCIESamples ] {
+static const float s_CIEColorMatchingXSamples[ s_NumCIESamples ] {
     0.000129900000, 0.000145847000, 0.000163802100, 0.000184003700, 0.000206690200,
     0.000232100000, 0.000260728000, 0.000293075000, 0.000329388000, 0.000369914000,
     0.000414900000, 0.000464158700, 0.000518986000, 0.000581854000, 0.000655234700,
@@ -121,7 +121,7 @@ static const double s_CIEColorMatchingXSamples[ s_NumCIESamples ] {
     0.000001251141
 };
 
-static const double s_CIEColorMatchingYSamples[ s_NumCIESamples ]  {
+static const float s_CIEColorMatchingYSamples[ s_NumCIESamples ]  {
     0.000003917000, 0.000004393581, 0.000004929604, 0.000005532136, 0.000006208245,
     0.000006965000, 0.000007813219, 0.000008767336, 0.000009839844, 0.000011043230,
     0.000012390000, 0.000013886410, 0.000015557280, 0.000017442960, 0.000019583750,
@@ -219,7 +219,7 @@ static const double s_CIEColorMatchingYSamples[ s_NumCIESamples ]  {
     0.000000451810
 };
 
-static const double s_CIEColorMatchingZSamples[ s_NumCIESamples ]  {
+static const float s_CIEColorMatchingZSamples[ s_NumCIESamples ]  {
     0.000606100000, 0.000680879200, 0.000765145600, 0.000860012400, 0.000966592800,
     0.001086000000, 0.001220586000, 0.001372729000, 0.001543579000, 0.001734286000,
     0.001946000000, 0.002177777000, 0.002435809000, 0.002731953000, 0.003078064000,
@@ -317,7 +317,7 @@ static const double s_CIEColorMatchingZSamples[ s_NumCIESamples ]  {
     0.000000000000
 };
 
-static const double s_CIEColorMatchingLambdaSamples[ s_NumCIESamples ] {
+static const float s_CIEColorMatchingLambdaSamples[ s_NumCIESamples ] {
     360, 361, 362, 363, 364, 365, 366, 367, 368, 369, 370, 371, 372, 373, 374,
     375, 376, 377, 378, 379, 380, 381, 382, 383, 384, 385, 386, 387, 388, 389,
     390, 391, 392, 393, 394, 395, 396, 397, 398, 399, 400, 401, 402, 403, 404,
@@ -352,21 +352,21 @@ static const double s_CIEColorMatchingLambdaSamples[ s_NumCIESamples ] {
     825, 826, 827, 828, 829, 830
 };
 
-static double averageSpectrumSamples( const Wavelengths &i_wavelengths,
-                                      const std::vector< double > &i_values,
+static float averageSpectrumSamples( const Wavelengths &i_wavelengths,
+                                      const std::vector< float > &i_values,
                                       Wavelength i_wavelengthStart,
                                       Wavelength i_wavelengthEnd )
 {
-    const double sum = integrate( i_wavelengths,
-                                  i_values,
-                                  i_wavelengthStart,
-                                  i_wavelengthEnd,
-                                  IntegrationMode::Constant );
+    const float sum = integrate( i_wavelengths,
+                                 i_values,
+                                 i_wavelengthStart,
+                                 i_wavelengthEnd,
+                                 IntegrationMode::Constant );
     return sum / ( i_wavelengthEnd - i_wavelengthStart );
 }
 
-static Spectrum spectrumFromSamples( const double* i_samples,
-                                     const double* i_values,
+static Spectrum spectrumFromSamples( const float* i_samples,
+                                     const float* i_values,
                                      size_t i_numSamples,
                                      Wavelength i_wavelengthStart,
                                      Wavelength i_wavelengthEnd ) {
@@ -374,15 +374,15 @@ static Spectrum spectrumFromSamples( const double* i_samples,
     Spectrum spectrum;
     
     // Convert to vectors
-    const std::vector< double > samples( i_samples, i_samples + i_numSamples );
-    const std::vector< double > values( i_values, i_values + i_numSamples );
+    const std::vector< float > samples( i_samples, i_samples + i_numSamples );
+    const std::vector< float > values( i_values, i_values + i_numSamples );
 
     for ( size_t i = 0; i < SPECTRUM_SAMPLE_COUNT; ++i )
     {
         Wavelength segmentStart = lerp( static_cast< Wavelength >( static_cast< float >( i ) / SPECTRUM_SAMPLE_COUNT ), i_wavelengthStart, i_wavelengthEnd );
         Wavelength segmentEnd = lerp( static_cast< Wavelength >( static_cast< float >( i + 1 ) / SPECTRUM_SAMPLE_COUNT ), i_wavelengthStart, i_wavelengthEnd );
 
-        const double average = averageSpectrumSamples( samples, values, segmentStart, segmentEnd );
+        const float average = averageSpectrumSamples( samples, values, segmentStart, segmentEnd );
 
         spectrum[ i ] = average;
     }
@@ -412,7 +412,7 @@ Spectrum::Spectrum()
 {
 }
 
-Spectrum::Spectrum( double i_value )
+Spectrum::Spectrum( float i_value )
 {
     m_wavelengths.fill( i_value );
 }
@@ -691,9 +691,9 @@ Spectrum sqrt( const Spectrum &i_spectrum )
     return ret;
 }
 
-Vec3d Spectrum::toXYZ() const
+Vec3f Spectrum::toXYZ() const
 {
-    Vec3d xyz;
+    Vec3f xyz;
     for ( size_t i = 0; i < SPECTRUM_SAMPLE_COUNT; ++i )
     {
         xyz[ 0 ] += m_wavelengths[ i ] * s_CIEColorMatchingX.m_wavelengths[ i ];
@@ -701,17 +701,17 @@ Vec3d Spectrum::toXYZ() const
         xyz[ 2 ] += m_wavelengths[ i ] * s_CIEColorMatchingZ.m_wavelengths[ i ];
     }
     
-    const double scale = ( s_SampledWavelengthEnd - s_SampledWavelengthStart ) / ( s_CIEColorMatchingYIntegral * static_cast< double >( SPECTRUM_SAMPLE_COUNT ) );
+    const float scale = ( s_SampledWavelengthEnd - s_SampledWavelengthStart ) / ( s_CIEColorMatchingYIntegral * static_cast< float >( SPECTRUM_SAMPLE_COUNT ) );
     xyz *= scale;
     
     return xyz;
 }
 
-Vec3d Spectrum::toRGB() const
+Vec3f Spectrum::toRGB() const
 {
-    const Vec3d xyz = toXYZ();
+    const Vec3f xyz = toXYZ();
     
-    return Vec3d( 3.240479 * xyz[ 0 ] - 1.537150 * xyz[ 1 ] - 0.498535 * xyz[ 2 ],
+    return Vec3f( 3.240479 * xyz[ 0 ] - 1.537150 * xyz[ 1 ] - 0.498535 * xyz[ 2 ],
                  -0.969256 * xyz[ 0 ] + 1.875991 * xyz[ 1 ] + 0.041556 * xyz[ 2 ],
                   0.055648 * xyz[ 0 ] - 0.204043 * xyz[ 1 ] + 1.057311 * xyz[ 2 ] );
 }

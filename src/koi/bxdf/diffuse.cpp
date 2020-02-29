@@ -19,18 +19,18 @@ Diffuse::Diffuse()
 {
 }
 
-Spectrum Diffuse::sampleF( const Array2d &i_sample,
-                           const Vec3d &i_wo,
-                           Vec3d &o_wi,
+Spectrum Diffuse::sampleF( const Array2 &i_sample,
+                           const Vec3 &i_wo,
+                           Vec3 &o_wi,
                            float &o_pdf )
 {
     cosineSampleHemisphere( i_sample, o_wi );
     o_pdf = cosineHemispherePdf( cosTheta( o_wi ) );
     
-    return computeF( i_wo, o_wi );
+    return evaluateF( i_wo, o_wi );
 }
 
-Spectrum Diffuse::computeF( const Vec3d &i_wo, const Vec3d &i_wi )
+Spectrum Diffuse::evaluateF( const Vec3 &i_wo, const Vec3 &i_wi )
 {
     return m_albedo * M_1_PI;
 }

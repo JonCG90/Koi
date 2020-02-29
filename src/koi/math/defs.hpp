@@ -45,22 +45,44 @@ using Vec3u = glm::uvec3;
 using Vec4u = glm::uvec4;
 
 template< class T >
-using Vec2 = glm::tvec2< T, glm::precision::defaultp >;
+using Vec2T = glm::tvec2< T, glm::precision::defaultp >;
 
 template< class T >
-using Vec3 = glm::tvec3< T, glm::precision::defaultp >;
+using Vec3T = glm::tvec3< T, glm::precision::defaultp >;
 
 template< class T >
-using Vec4 = glm::tvec4< T, glm::precision::defaultp >;
+using Vec4T = glm::tvec4< T, glm::precision::defaultp >;
 
 template< class T >
-using Mat3 = glm::tmat3x3< T, glm::precision::defaultp >;
+using Mat3T = glm::tmat3x3< T, glm::precision::defaultp >;
 
 template< class T >
-using Mat4 = glm::tmat4x4< T, glm::precision::defaultp >;
+using Mat4T = glm::tmat4x4< T, glm::precision::defaultp >;
+
+// Use float by default
+using Vec2 = Vec2f;
+using Vec3 = Vec3f;
+using Vec4 = Vec4f;
+using Mat3 = Mat3f;
+using Mat4 = Mat4f;
+using Quat = Quatf;
+
+using Array2f = std::array< float, 2 >;
+using Array3f = std::array< float, 3 >;
 
 using Array2d = std::array< double, 2 >;
 using Array3d = std::array< double, 3 >;
+
+using Array2 = Array2f;
+using Array3 = Array2f;
+
+static constexpr double s_Pi = 3.14159265358979323846264338327950288;
+static constexpr double s_2Pi = 2.0 * s_Pi;
+static constexpr double s_4Pi = 4.0 * s_Pi;
+static constexpr double s_1_Pi = 1.0 / s_Pi;
+static constexpr double s_2_Pi = 2.0 / s_Pi;
+static constexpr double s_Pi_2 = s_Pi / 2.0;
+static constexpr double s_Pi_4 = s_Pi / 4.0;
 
 } // namespace koi
 

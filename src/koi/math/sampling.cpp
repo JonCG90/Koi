@@ -13,67 +13,67 @@
 namespace koi
 {
 
-void uniformSampleHemisphere( const Array2d &i_u, Vec3d &o_sample )
+void uniformSampleHemisphere( const Array2 &i_u, Vec3 &o_sample )
 {
     // cos(theta) = r1 = y
     // cos^2(theta) + sin^2(theta) = 1 -> sin(theta) = srtf(1 - cos^2(theta))
-    const double z = i_u[ 0 ];
-    const double sinTheta = std::sqrtf( std::max( 0.0, 1 - z * z ) );
-    const double phi = 2 * M_PI * i_u[ 1 ];
+    const float z = i_u[ 0 ];
+    const float sinTheta = std::sqrt( std::max( 0.0, 1.0 - z * z ) );
+    const float phi = s_2Pi * i_u[ 1 ];
     
-    o_sample = { sinTheta * std::cosf( phi ), sinTheta * std::sinf( phi ), z };
+    o_sample = { sinTheta * std::cos( phi ), sinTheta * std::sin( phi ), z };
 }
 
-double uniformHemispherePdf()
+float uniformHemispherePdf()
 {
-    return 1.0 / ( 2.0 * M_PI );
+    return 1.0 / s_2Pi;
 }
 
-void cosineSampleHemisphere( const Array2d &i_u, Vec3d &o_sample )
+void cosineSampleHemisphere( const Array2 &i_u, Vec3 &o_sample )
 {
-    Vec2d diskSample;
+    Vec2 diskSample;
     concentricSampleDisk( i_u, diskSample );
     
-    const double x = diskSample[ 0 ];
-    const double y = diskSample[ 1 ];
-    const double proj = std::sqrt( std::max( 0.0, 1.0 - x * x - y * y ) );
+    const float x = diskSample[ 0 ];
+    const float y = diskSample[ 1 ];
+    const float proj = std::sqrt( std::max( 0.0, 1.0 - x * x - y * y ) );
     
     o_sample = { x, y, proj };
 }
 
-float cosineHemispherePdf( double cosTheta )
+float cosineHemispherePdf( float cosTheta )
 {
-    return cosTheta * M_1_PI;
+    return cosTheta * s_1_Pi;
 }
 
-void concentricSampleDisk( const Array2d &i_u, Vec2d &o_sample )
+void concentricSampleDisk( const Array2 &i_u, Vec2 &o_sample )
 {
     // Map uniform random numbers to $[-1,1]^2$
-    Vec2d uOffset = 2.0 * Vec2d( i_u[ 0 ], i_u[ 1 ] ) - Vec2d( 1.0, 1.0 );
+    Vec2 uOffset = 2.0f * Vec2( i_u[ 0 ], i_u[ 1 ] ) - Vec2( 1.0, 1.0 );
     
     // Handle degeneracy at the origin
     if ( uOffset.x == 0 && uOffset.y == 0 )
     {
-        o_sample = Vec2d( 0.0, 0.0 );
+        o_sample = Vec2( 0.0, 0.0 );
         return;
     }
     
     // Apply concentric mapping to point
-    double theta;
-    double r;
+    float theta;
+    float r;
     
     if ( std::abs( uOffset.x ) > std::abs( uOffset.y ) )
     {
         r = uOffset.x;
-        theta = M_PI_4 * ( uOffset.y / uOffset.x );
+        theta = s_Pi_4 * ( uOffset.y / uOffset.x );
     }
     else
     {
         r = uOffset.y;
-        theta = M_PI_2 - M_PI_4 * ( uOffset.x / uOffset.y );
+        theta = s_Pi_2 - s_Pi_4 * ( uOffset.x / uOffset.y );
     }
     
-    o_sample = r * Vec2d( std::cos( theta ), std::sin( theta ) );
+    o_sample = r * Vec2( std::cos( theta ), std::sin( theta ) );
 }
 
 } // namespace koi

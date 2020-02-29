@@ -23,12 +23,12 @@ public:
     BxDF() = default;
     virtual ~BxDF() = default;
     
-    virtual Spectrum sampleF( const Array2d &i_sample,
-                              const Vec3d &i_wo,
-                              Vec3d &o_wi,
+    virtual Spectrum sampleF( const Array2 &i_sample,
+                              const Vec3 &i_wo,
+                              Vec3 &o_wi,
                               float &o_pdf ) = 0;
 
-    virtual Spectrum computeF( const Vec3d &i_wo, const Vec3d &i_wi ) = 0;
+    virtual Spectrum evaluateF( const Vec3 &i_wo, const Vec3 &i_wi ) = 0;
 
 };
 

@@ -27,40 +27,40 @@ template < class T >
 inline T lerp( const T &i_t, const T &i_v1, const T &i_v2 );
 
 template < class T >
-inline T cosTheta( const Vec3< T > &i_w );
+inline T cosTheta( const Vec3T< T > &i_w );
 
 template < class T >
-inline T cos2Theta( const Vec3< T > &i_w );
+inline T cos2Theta( const Vec3T< T > &i_w );
 
 template < class T >
-inline T absCosTheta( const Vec3< T > &i_w );
+inline T absCosTheta( const Vec3T< T > &i_w );
 
 template < class T >
-inline T sin2Theta( const Vec3< T > &i_w );
+inline T sin2Theta( const Vec3T< T > &i_w );
 
 template < class T >
-inline T sinTheta( const Vec3< T > &i_w );
+inline T sinTheta( const Vec3T< T > &i_w );
 
 template < class T >
-inline T tanTheta( const Vec3< T > &i_w );
+inline T tanTheta( const Vec3T< T > &i_w );
 
 template < class T >
-inline T tan2Theta( const Vec3< T > &i_w );
+inline T tan2Theta( const Vec3T< T > &i_w );
 
 template < class T >
-inline T CcosPhi( const Vec3< T > &i_w );
+inline T CcosPhi( const Vec3T< T > &i_w );
 
 template < class T >
-inline T sinPhi( const Vec3< T > &i_w );
+inline T sinPhi( const Vec3T< T > &i_w );
 
 template < class T >
-inline T cos2Phi( const Vec3< T > &i_w );
+inline T cos2Phi( const Vec3T< T > &i_w );
 
 template < class T >
-inline T sin2Phi( const Vec3< T > &i_w );
+inline T sin2Phi( const Vec3T< T > &i_w );
 
 template < class T >
-inline T sameHemisphere( const Vec3< T > &i_w1,  const Vec3< T > &i_w2 );
+inline T sameHemisphere( const Vec3T< T > &i_w1,  const Vec3T< T > &i_w2 );
 
 template < class T, class U >
 static U integrate( const std::vector< T > &i_samples,

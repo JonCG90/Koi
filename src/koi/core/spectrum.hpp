@@ -18,7 +18,7 @@ namespace koi
 
 #define SPECTRUM_SAMPLE_COUNT 60
 
-using Wavelength = double;
+using Wavelength = float;
 using Wavelengths = std::vector< Wavelength >;
 
 class Spectrum
@@ -26,7 +26,7 @@ class Spectrum
 public:
     
     Spectrum();
-    Spectrum( double i_value );
+    Spectrum( float i_value );
     
     ~Spectrum() = default;
     
@@ -58,8 +58,8 @@ public:
     
     friend Spectrum sqrt( const Spectrum &i_spectrum );
     
-    Vec3d toXYZ() const;
-    Vec3d toRGB() const;
+    Vec3f toXYZ() const;
+    Vec3f toRGB() const;
     
 private:
         
@@ -69,8 +69,8 @@ private:
 
 struct SpectrumSample
 {
-    double wavelength;
-    double value;
+    float wavelength;
+    float value;
 };
 
 using SpectrumSamples = std::vector< SpectrumSample >;

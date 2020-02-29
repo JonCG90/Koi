@@ -28,6 +28,8 @@ public:
     Shape() = default;
     virtual ~Shape() = default;
     
+    virtual float surfaceArea() const = 0;
+    
     virtual bool intersect( const Ray &i_ray, Intersection &o_intersection ) const = 0;
     
 };

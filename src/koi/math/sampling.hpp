@@ -14,15 +14,15 @@
 namespace koi
 {
 
-void uniformSampleHemisphere( const Array2d &i_u, Vec3d &o_sample );
+void uniformSampleHemisphere( const Array2 &i_u, Vec3 &o_sample );
 
-double uniformHemispherePdf();
+float uniformHemispherePdf();
 
-void cosineSampleHemisphere( const Array2d &i_u, Vec3d &o_sample );
+void cosineSampleHemisphere( const Array2 &i_u, Vec3 &o_sample );
 
-float cosineHemispherePdf( double cosTheta );
+float cosineHemispherePdf( float cosTheta );
 
-void concentricSampleDisk( const Array2d &i_u, Vec2d &o_sample );
+void concentricSampleDisk( const Array2 &i_u, Vec2 &o_sample );
 
 } // namespace koi
 

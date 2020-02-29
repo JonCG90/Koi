@@ -9,6 +9,7 @@
 #include "sphere.hpp"
 
 #include <koi/core/ray.hpp>
+#include <koi/math/defs.hpp>
 
 namespace koi
 {
@@ -18,10 +19,15 @@ Sphere::Sphere()
 {
 }
 
-Sphere::Sphere( double i_radius )
+Sphere::Sphere( float i_radius )
     : Shape()
     , m_radius( i_radius )
 {
+}
+
+float Sphere::surfaceArea() const
+{
+    return s_4Pi * m_radius * m_radius;
 }
 
 bool Sphere::intersect( const Ray &i_ray, Intersection &o_intersection ) const

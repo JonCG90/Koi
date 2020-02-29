@@ -21,16 +21,28 @@ class Sphere : public Shape
 {
 public:
     
+    /// Default constructor
     Sphere();
-    Sphere( double i_radius );
+    
+    /// Constructor
+    ///
+    /// @param i_radius Input radius to set
+    Sphere( float i_radius );
 
+    /// Default destructor
     ~Sphere() override = default;
+    
+    /// Returns the surface area in local measurement
+    ///
+    /// @return Computed surface area in local
+    float surfaceArea() const override final;
     
     bool intersect( const Ray &i_ray, Intersection &o_intersection ) const override;
 
 private:
     
-    double m_radius;
+    /// Radius of the sphere
+    float m_radius;
 };
 
 } // namespace koi

@@ -18,6 +18,7 @@ namespace koi
 Spectrum RayTraceIntegrator::computeLi( const Vec2u &i_filmPoint, const Scene &i_scene, CameraPtr i_camera, const Sampler &i_sampler, size_t i_depth )
 {
     CameraSample cameraSample;
+    
 //    cameraSample.pixelSample = pFilm + i_sampler.sample2D();
 //    cameraSample.lensSample = i_sampler.sample2D();
     
