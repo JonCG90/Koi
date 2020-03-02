@@ -11,11 +11,12 @@
 
 #include "shape.hpp"
 
-#include <koi/core/ray.hpp>
 #include <koi/math/defs.hpp>
 
 namespace koi
 {
+
+class Ray;
 
 class Sphere : public Shape
 {

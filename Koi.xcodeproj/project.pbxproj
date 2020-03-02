@@ -284,6 +284,8 @@
 		239C855523F52DDC0079116E /* koi.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 239C855323F52DDC0079116E /* koi.hpp */; };
 		239C856E23FA8E080079116E /* libKoi.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 23DC7F9223CC5A5C00343E5C /* libKoi.dylib */; };
 		239C857523FA917A0079116E /* KoiTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = 239C857423FA917A0079116E /* KoiTests.mm */; };
+		239C857E240D00AC0079116E /* testIntersection.mm in Sources */ = {isa = PBXBuildFile; fileRef = 239C857D240D00AC0079116E /* testIntersection.mm */; };
+		239C8580240D040E0079116E /* testIntegration.mm in Sources */ = {isa = PBXBuildFile; fileRef = 239C857F240D040E0079116E /* testIntegration.mm */; };
 		23DC7FC023CDCE5500343E5C /* timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 23DC7FBE23CDCE5500343E5C /* timer.cpp */; };
 		23DC7FC123CDCE5500343E5C /* timer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 23DC7FBF23CDCE5500343E5C /* timer.hpp */; };
 		23DC7FC423D06DEF00343E5C /* rng.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 23DC7FC223D06DEF00343E5C /* rng.cpp */; };
@@ -728,6 +730,8 @@
 		239C856923FA8E080079116E /* KoiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KoiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		239C856D23FA8E080079116E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		239C857423FA917A0079116E /* KoiTests.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = KoiTests.mm; sourceTree = "<group>"; };
+		239C857D240D00AC0079116E /* testIntersection.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = testIntersection.mm; sourceTree = "<group>"; };
+		239C857F240D040E0079116E /* testIntegration.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = testIntegration.mm; sourceTree = "<group>"; };
 		23DC7F9223CC5A5C00343E5C /* libKoi.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libKoi.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		23DC7FBE23CDCE5500343E5C /* timer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = timer.cpp; sourceTree = "<group>"; };
 		23DC7FBF23CDCE5500343E5C /* timer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = timer.hpp; sourceTree = "<group>"; };
@@ -1241,6 +1245,8 @@
 			children = (
 				239C857423FA917A0079116E /* KoiTests.mm */,
 				239C856D23FA8E080079116E /* Info.plist */,
+				239C857D240D00AC0079116E /* testIntersection.mm */,
+				239C857F240D040E0079116E /* testIntegration.mm */,
 			);
 			path = KoiTests;
 			sourceTree = "<group>";
@@ -1754,6 +1760,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				239C857E240D00AC0079116E /* testIntersection.mm in Sources */,
+				239C8580240D040E0079116E /* testIntegration.mm in Sources */,
 				239C857523FA917A0079116E /* KoiTests.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
