@@ -19,7 +19,14 @@ Ray::Ray()
 Ray::Ray( const Vec3d &i_position, const Vec3d &i_direction )
     : m_position( i_position )
     , m_direction( i_direction )
+    , m_t( 0.0 )
+    , m_tMax( s_InfinityFloat )
 {
+}
+
+Vec3d Ray::operator()( double i_t ) const
+{
+    return m_position + m_direction * i_t;
 }
 
 const Vec3d & Ray::getPosition() const
@@ -30,6 +37,16 @@ const Vec3d & Ray::getPosition() const
 const Vec3d & Ray::getDirection() const
 {
     return m_direction;
+}
+
+float Ray::getT() const
+{
+    return m_t;
+}
+
+float Ray::getMaxT() const
+{
+    return 0.0;
 }
 
 } // namespace koi

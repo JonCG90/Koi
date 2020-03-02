@@ -84,6 +84,9 @@ static constexpr double s_2_Pi = 2.0 / s_Pi;
 static constexpr double s_Pi_2 = s_Pi / 2.0;
 static constexpr double s_Pi_4 = s_Pi / 4.0;
 
+static constexpr float s_MaxFloat = std::numeric_limits< float >::max();
+static constexpr float s_InfinityFloat = std::numeric_limits< float >::infinity();
+
 } // namespace koi
 
 #endif /* KOI_MATH_DEFS_HPP */

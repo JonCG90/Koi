@@ -10,6 +10,7 @@
 
 #include <koi/core/ray.hpp>
 #include <koi/math/defs.hpp>
+#include <koi/math/math.hpp>
 
 namespace koi
 {
@@ -22,6 +23,11 @@ Sphere::Sphere()
 Sphere::Sphere( float i_radius )
     : Shape()
     , m_radius( i_radius )
+    , m_zMin( -i_radius )
+    , m_zMax( i_radius )
+    , thetaMin( 0.0 )
+    , thetaMax( 0.0 )
+    , phiMax( 0.0 )
 {
 }
 
@@ -32,67 +38,46 @@ float Sphere::surfaceArea() const
 
 bool Sphere::intersect( const Ray &i_ray, Intersection &o_intersection ) const
 {
-    const Vec3d &position = i_ray.getPosition();
-    const Vec3d &direction = i_ray.getDirection();
-
-    bool hit  = false;
-    static const double epsilon = 0.001;
-    double t0 = 0.0;
-    double t1 = 0.0;
+    const Ray ray = i_ray;
     
-    double a = dot( direction, direction );
-    double b = 2 * dot( position, direction );
-    double c = dot( position, position ) - m_radius * m_radius;
+    const Vec3 &position = ray.getPosition();
+    const Vec3 &direction = ray.getDirection();
     
-    double discr = b * b - 4 * a * c;
+    // Near and far hits
+    float t0 = 0.0;
+    float t1 = 0.0;
     
-    if ( discr > 0 ) {
-        
-        hit = true;
-        
-        double q = ( b > 0 ) ? -0.5 * ( b + std::sqrt( discr ) )
-                             : -0.5 * ( b - std::sqrt( discr ) );
-        double x0 = q / a;
-        double x1 = c / q;
-        
-        // Swap
-        if ( x0 > x1 )
-        {
-            std::swap( x0, x1 );
-        }
-        
-        t0 = std::max( x0, 0.0 );
-        t1 = std::max( x1, 0.0 );
-        
-    }
-    else if ( discr == 0 )
+    // Compute quadratic solutions:
+    // x^2 + y^2 + z^2 - r^2 = 0
+    // = ( ox + t dx )^2 + ( oy + t dy )^2 + ( oy + t dy )^2 - r^2 = 0
+    // = at^2 + bt + c = 0
+    // where a = dx^2 + dy^2 + dz^2
+    //       b = 2( dx ox + dy oy + dz oz )
+    //       c = ox^2 + oy^2 + oz^2 - r^2
+    const float a = direction.x * direction.x + direction.y * direction.y + direction.z * direction.z;
+    const float b = 2.0 * ( direction.x * position.x + direction.y * position.y + direction.z * position.z );
+    const float c = position.x * position.x + position.y * position.y + position.z * position.z - m_radius * m_radius;
+    
+    if ( !quadratic( a, b, c, t0, t1 ) )
     {
-        hit = true;
-        t0 = t1 = - 0.5 * b / a;
+        return false;
     }
     
-    if ( hit )
+    if ( t0 > ray.getMaxT() || t1 <= 0.0 )
     {
-        if ( t0 < epsilon ) {
-            t0 = t1;
-        }
-        
-//        if ( fabs( t1 - t0 ) < epsilon || t0 > i_ray.getMaxLength() ) {
-//            return false;
-//        }
-//
-//        glm::vec3 hitPosition( position + direction * t0 );
-//
-//        SurfacePoint surfacePoint;
-//        surfacePoint.pos = hitPosition;
-//        surfacePoint.normal = glm::normalize( hitPosition );
-//        surfacePoint.color = vec4f( 1.0 );
-//
-//        o_intersection.setSurfacePoint( surfacePoint );
-//        o_intersection.t = t0;
+        return false;
     }
     
-    return hit;
+    float tHit = t0;
+    if ( tHit <= 0.0 )
+    {
+        tHit = t1;
+    }
+    
+    const Vec3 hitPosition = ray( tHit );
+    
+    
+    return false;
 }
 
 } // namespace koi

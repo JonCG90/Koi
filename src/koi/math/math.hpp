@@ -69,6 +69,9 @@ static U integrate( const std::vector< T > &i_samples,
                     T i_intervalEnd,
                     IntegrationMode i_mode = IntegrationMode::Clamp );
 
+template < class T >
+inline bool quadratic( T i_a, T i_b, T i_c, T &o_v0, T &o_v1 );
+
 } // namespace koi
 
 #include "math.tpp"

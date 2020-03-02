@@ -177,4 +177,43 @@ static U integrate( const std::vector< T > &i_samples,
     return sum;
 }
 
+template < class T >
+inline bool quadratic( T i_a, T i_b, T i_c, T &o_v0, T &o_v1 )
+{
+    // Convert to double for best precision
+    double a = static_cast< double >( i_a );
+    double b = static_cast< double >( i_b );
+    double c = static_cast< double >( i_c );
+    
+    double discriminant = b * b - 4.0 * a * c;
+    
+    if ( discriminant < 0.0 )
+    {
+        return false;
+    }
+    
+    double root = std::sqrt( discriminant );
+
+    // This yield better precision when b is close sqrt(b^2 - 4ac)
+    double q;
+    if ( b < 0 )
+    {
+        q = -0.5 * ( b - root );
+    }
+    else
+    {
+        q = -0.5 * ( b + root );
+    }
+
+    o_v0 = static_cast< T >( q / a );
+    o_v1 = static_cast< T >( c / q );
+    
+    if ( o_v0 > o_v1 )
+    {
+        std::swap( o_v0, o_v0 );
+    }
+    
+    return true;
+}
+
 } // namespace koi

@@ -43,6 +43,13 @@ private:
     
     /// Radius of the sphere
     float m_radius;
+    
+    float m_zMin;
+    float m_zMax;
+    
+    float thetaMin;
+    float thetaMax;
+    float phiMax;
 };
 
 } // namespace koi
