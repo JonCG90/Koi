@@ -29,7 +29,7 @@
 
 - (void)testSphereIntersection {
     
-    koi::Ray ray( koi::Vec3f( 0.0, 0.0, -15.0 ), koi::Vec3f( 0.0, 0.0, 1.0 ) );
+    koi::Ray ray( koi::Vec3f( 0.0, -15.0, 0.0 ), koi::Vec3f( 0.0, 1.0, 0.0 ) );
     koi::Sphere sphere( 10.0 );
     koi::Intersection intersection;
     

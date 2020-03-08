@@ -10,6 +10,24 @@ namespace koi
 {
 
 template < class T >
+inline T dot( const Vec3T< T > &i_w1, const Vec3T< T > &i_w2 )
+{
+    return glm::dot( i_w1, i_w2 );
+}
+
+template < class T >
+inline Vec3T< T > cross( const Vec3T< T > &i_w1, const Vec3T< T > &i_w2 )
+{
+    return glm::cross( i_w1, i_w2 );
+}
+
+template < class T >
+inline Vec3T< T > normalize( const Vec3T< T > &i_w )
+{
+    return glm::normalize( i_w );
+}
+
+template < class T >
 inline T lerp( const T &i_t, const T &i_v1, const T &i_v2 )
 {
     return ( 1 - i_t ) * i_v1 + i_t * i_v2;
@@ -210,7 +228,7 @@ inline bool quadratic( T i_a, T i_b, T i_c, T &o_v0, T &o_v1 )
     
     if ( o_v0 > o_v1 )
     {
-        std::swap( o_v0, o_v0 );
+        std::swap( o_v0, o_v1 );
     }
     
     return true;

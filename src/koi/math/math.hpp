@@ -24,6 +24,15 @@ enum class IntegrationMode
 };
 
 template < class T >
+inline T dot( const Vec3T< T > &i_w1, const Vec3T< T > &i_w2 );
+
+template < class T >
+inline Vec3T< T > cross( const Vec3T< T > &i_w1, const Vec3T< T > &i_w2 );
+
+template < class T >
+inline Vec3T< T > normalize( const Vec3T< T > &i_w );
+
+template < class T >
 inline T lerp( const T &i_t, const T &i_v1, const T &i_v2 );
 
 template < class T >

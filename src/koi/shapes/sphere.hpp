@@ -35,7 +35,7 @@ public:
     
     /// Returns the surface area in local measurement
     ///
-    /// @return Computed surface area in local
+    /// @return Computed surface area in local measurement
     float surfaceArea() const override final;
     
     bool intersect( const Ray &i_ray, Intersection &o_intersection ) const override;
@@ -45,12 +45,17 @@ private:
     /// Radius of the sphere
     float m_radius;
     
-    float m_zMin;
-    float m_zMax;
+    float m_thetaMin;
+    float m_thetaMax;
+    float m_phiMin;
+    float m_phiMax;
     
-    float thetaMin;
-    float thetaMax;
-    float phiMax;
+    float m_deltaTheta;
+    float m_deltaPhi;
+    
+private:
+    
+    bool intersectPartial( const Ray &i_ray, float i_t, Vec3 &o_hitPosition, float &o_theta, float &o_phi ) const;
 };
 
 } // namespace koi

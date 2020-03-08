@@ -46,7 +46,7 @@ float Ray::getT() const
 
 float Ray::getMaxT() const
 {
-    return 0.0;
+    return m_tMax;
 }
 
 } // namespace koi
