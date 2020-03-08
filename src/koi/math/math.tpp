@@ -234,4 +234,16 @@ inline bool quadratic( T i_a, T i_b, T i_c, T &o_v0, T &o_v1 )
     return true;
 }
 
+template < class T >
+inline T cartesianToSpherical( const Vec3T< T > &i_p, T i_radius, T &o_theta, T &o_phi )
+{
+    o_theta = std::clamp( std::acos( i_p.z / i_radius ), -1.0, 1.0 );
+    o_phi = std::atan2( i_p.y, i_p.x );
+    
+    if ( o_phi < 0.0 )
+    {
+        o_phi += s_2Pi;
+    }
+}
+
 } // namespace koi

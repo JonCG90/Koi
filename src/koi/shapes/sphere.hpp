@@ -55,7 +55,9 @@ private:
     
 private:
     
-    bool intersectPartial( const Ray &i_ray, float i_t, Vec3 &o_hitPosition, float &o_theta, float &o_phi ) const;
+    bool intersectPartial( const Ray &i_ray, float i_t, Vec3 &o_hitPosition ) const;
+    
+    void fillIntersection( const Vec3 &i_hitPosition, Intersection &o_intersection ) const;
 };
 
 } // namespace koi

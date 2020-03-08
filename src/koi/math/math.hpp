@@ -81,6 +81,9 @@ static U integrate( const std::vector< T > &i_samples,
 template < class T >
 inline bool quadratic( T i_a, T i_b, T i_c, T &o_v0, T &o_v1 );
 
+template < class T >
+inline T cartesianToSpherical( const Vec3T< T > &i_p, T i_radius, T &o_theta, T &o_phi );
+
 } // namespace koi
 
 #include "math.tpp"

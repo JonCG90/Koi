@@ -77,11 +77,9 @@ bool Sphere::intersect( const Ray &i_ray, Intersection &o_intersection ) const
     }
     
     Vec3 hitPosition;
-    float theta = 0.0;
-    float phi = 0.0;
     
     // Check for intersection against partial spheres
-    if ( !intersectPartial( ray, tHit, hitPosition, theta, phi ) )
+    if ( !intersectPartial( ray, tHit, hitPosition ) )
     {
         if ( tHit == t1 )
         {
@@ -89,11 +87,45 @@ bool Sphere::intersect( const Ray &i_ray, Intersection &o_intersection ) const
         }
         
         tHit = t1;
-        if ( !intersectPartial( ray, tHit, hitPosition, theta, phi ) )
+        if ( !intersectPartial( ray, tHit, hitPosition ) )
         {
             return false;
         }
     }
+    
+    fillIntersection( hitPosition, o_intersection );
+
+    return true;
+}
+
+bool Sphere::intersectPartial( const Ray &i_ray, float i_t, Vec3 &o_hitPosition ) const
+{
+    o_hitPosition = i_ray( i_t );
+    
+    // Compute theta and phi using spherical coordinates
+    // x = r sin(θ) cos(φ)
+    // y = r sin(θ) sin(φ)
+    // z = r cos(θ)
+    
+    float theta = 0.0;
+    float phi = 0.0;
+    cartesianToSpherical( o_hitPosition, m_radius, theta, phi );
+    
+    if ( theta < m_thetaMin || theta > m_thetaMax || phi < m_phiMin || phi > m_phiMax )
+    {
+        return false;
+    }
+    
+    return true;
+}
+
+void Sphere::fillIntersection( const Vec3 &i_hitPosition, Intersection &o_intersection ) const
+{
+    Vec3 position = i_hitPosition;
+    
+    float theta = 0.0;
+    float phi = 0.0;
+    cartesianToSpherical( position, m_radius, theta, phi );
     
     const float u = ( phi - m_phiMin ) / m_deltaPhi;
     const float v = ( theta - m_thetaMin ) / m_deltaTheta;
@@ -102,7 +134,7 @@ bool Sphere::intersect( const Ray &i_ray, Intersection &o_intersection ) const
     // dx/du = d/du( r sin(θ) cos(φ) ) = -r sin(θ) sin(φ) = -y
     // dy/du = d/du( r sin(θ) sin(φ) ) =  r sin(θ) cos(φ) =  x
     // dz/du = d/du( r cos(θ)        ) =  0               =  0
-    const Vec3 dpdu = m_deltaPhi * Vec3( -hitPosition.y, hitPosition.x, 0.0 );
+    const Vec3 dpdu = m_deltaPhi * Vec3( -position.y, position.x, 0.0 );
 
     // Take derivative for theta
     // dx/dv = d/dv( r sin(θ) cos(φ) ) =  r cos(θ) cos(φ) =  z cos(φ)
@@ -110,29 +142,29 @@ bool Sphere::intersect( const Ray &i_ray, Intersection &o_intersection ) const
     // dz/dv = d/dv( r cos(θ)        ) = -r sin(θ)        = -r sin(θ)
     
     // Compute sin and cos phi using trig as it's much faster than calling sin and cos
-    const float hypotenuse = std::sqrt( hitPosition.x * hitPosition.x + hitPosition.y * hitPosition.y );
+    const float hypotenuse = std::sqrt( position.x * position.x + position.y * position.y );
     const float invHypotenuse = 1.0 / hypotenuse;
-    const float sinPhi = hitPosition.y * invHypotenuse;
-    const float cosPhi = hitPosition.x * invHypotenuse;
+    const float sinPhi = position.y * invHypotenuse;
+    const float cosPhi = position.x * invHypotenuse;
     
-    const Vec3 dpdv = m_deltaTheta * Vec3( hitPosition.z * cosPhi, hitPosition.z * sinPhi, -m_radius * std::sin( theta ) );
+    const Vec3 dpdv = m_deltaTheta * Vec3( position.z * cosPhi, position.z * sinPhi, -m_radius * std::sin( theta ) );
     
     // Take the second derivative for theta
     // dx^2/du = d^2/du( -r sin(θ) sin(φ) ) = -r sin(θ) cos(φ) = -x
     // dy^2/du = d^2/du(  r sin(θ) cos(φ) ) = -r sin(θ) sin(φ) = -y
     // dz^2/du = d^2/du(  0               )                    =  0
-    const Vec3 d2pdudu = m_deltaPhi * m_deltaPhi * Vec3( -hitPosition.x, -hitPosition.y, 0.0 );
+    const Vec3 d2pdudu = m_deltaPhi * m_deltaPhi * Vec3( -position.x, -position.y, 0.0 );
     
     // Take the second derivative for theta
     // dx^2/dudv = d^2/dv( -r sin(θ) sin(φ) ) = -r cos(θ) sin(φ) = -z sin(φ)
     // dy^2/dudv = d^2/dv(  r sin(θ) cos(φ) ) =  r cos(θ) cos(φ) =  z cos(φ)
     // dz^2/dudv = d^2/dv(  0               ) =                     0
-    const Vec3 d2pdudv = m_deltaTheta * m_deltaPhi * Vec3( -hitPosition.z * sinPhi, hitPosition.z * cosPhi, 0.0 );
+    const Vec3 d2pdudv = m_deltaTheta * m_deltaPhi * Vec3( -position.z * sinPhi, position.z * cosPhi, 0.0 );
 
     // dx^2/dv = d^2/dv(  r cos(θ) cos(φ) ) = -r sin(θ) cos(φ) = -x
     // dy^2/dv = d^2/dv(  r cos(θ) sin(φ) ) = -r sin(θ) sin(φ) = -y
     // dz^2/dv = d^2/dv( -r sin(θ)        ) = -r cos(θ)        = -z
-    const Vec3 d2pdvdv = m_deltaTheta * m_deltaTheta * Vec3( -hitPosition.x, -hitPosition.y, -hitPosition.z );
+    const Vec3 d2pdvdv = m_deltaTheta * m_deltaTheta * Vec3( -position.x, -position.y, -position.z );
 
     // Compute normal partial derivatives using Weingarten equations
     const float E = dot( dpdu, dpdu );
@@ -149,44 +181,14 @@ bool Sphere::intersect( const Ray &i_ray, Intersection &o_intersection ) const
     Vec3 dndu = ( ( f * F - e * G ) * invEGF2 * dpdu ) + ( ( e * F - f * E ) * invEGF2 * dpdv );
     Vec3 dndv = ( ( g * F - f * G ) * invEGF2 * dpdu ) + ( ( f * F - g * E ) * invEGF2 * dpdv );
     
-    Vec3 dndu2 = dpdu / m_radius;
-    Vec3 dndv2 = dpdv / m_radius;
-    
     // Fill in geo info
     IntersectionGeometry &geoInfo = o_intersection.geometry;
-    geoInfo.position = hitPosition;
+    geoInfo.position = position;
     geoInfo.uv = Vec2( u, v );
     geoInfo.dpdu = dpdu;
     geoInfo.dpdv = dpdv;
     geoInfo.dndu = dndu;
     geoInfo.dndv = dndv;
-
-    return true;
-}
-
-bool Sphere::intersectPartial( const Ray &i_ray, float i_t, Vec3 &o_hitPosition, float &o_theta, float &o_phi ) const
-{
-    o_hitPosition = i_ray( i_t );
-    
-    // Compute theta and phi using spherical coordinates
-    // x = r sin(θ) cos(φ)
-    // y = r sin(θ) sin(φ)
-    // z = r cos(θ)
-
-    o_theta = std::acos( o_hitPosition.z / m_radius );
-    o_phi = std::atan2( o_hitPosition.y, o_hitPosition.x );
-    
-    if ( o_phi < 0 )
-    {
-        o_phi += s_2Pi;
-    }
-    
-    if ( o_theta < m_thetaMin || o_theta > m_thetaMax || o_phi < m_phiMin || o_phi > m_phiMax )
-    {
-        return false;
-    }
-    
-    return true;
 }
 
 } // namespace koi
